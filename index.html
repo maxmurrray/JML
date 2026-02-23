@@ -210,36 +210,37 @@
     .places {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 80px 48px;
+      padding: 60px 48px;
     }
 
     .places h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
+      font-family: 'mari', serif;
+      font-size: 36px;
       font-weight: 700;
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .places .subtitle {
       text-align: center;
-      font-size: 16px;
+      font-family: 'mari', serif;
+      font-size: 15px;
       color: #666;
-      margin-bottom: 48px;
+      margin-bottom: 36px;
       line-height: 1.6;
     }
 
     .places-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 16px;
     }
 
     .place-card {
       position: relative;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 4 / 3;
       cursor: pointer;
     }
 
@@ -252,7 +253,7 @@
 
     .place-card:hover img {
       transform: scale(1.08);
-      filter: brightness(0.75);
+      filter: brightness(0.7);
     }
 
     .place-card .place-overlay {
@@ -260,23 +261,24 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 24px;
+      padding: 16px;
       background: linear-gradient(transparent, rgba(0,0,0,0.7));
       transition: opacity 0.4s ease;
     }
 
     .place-card .place-city {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
+      font-family: 'mari', serif;
+      font-size: 18px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .place-card .place-country {
-      font-size: 13px;
+      font-family: 'mari', serif;
+      font-size: 11px;
       color: rgba(255,255,255,0.8);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
@@ -284,29 +286,14 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 12px;
+      border-radius: 10px;
       border: 0px solid rgba(255,255,255,0.3);
       transition: border 0.4s ease;
       pointer-events: none;
     }
 
     .place-card:hover::after {
-      border: 3px solid rgba(255,255,255,0.5);
-    }
-
-    /* Country dividers */
-    .country-section {
-      margin-bottom: 48px;
-    }
-
-    .country-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      padding-bottom: 8px;
-      border-bottom: 1.5px solid #ddd;
-      color: #1a1a1a;
+      border: 2px solid rgba(255,255,255,0.5);
     }
 
     @media (max-width: 768px) {
@@ -405,178 +392,34 @@
     <h2>Places I've Been</h2>
     <p class="subtitle">Some of my favorite destinations around the world. Every trip taught me something new.</p>
 
-    <div class="country-section">
-      <h3>Italy</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/rome.png" alt="Rome, Italy" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Rome</div><div class="place-country">Italy</div></div>
-        </div>
-        <div class="place-card">
-          <img src="images/amalfi.png" alt="Amalfi Coast, Italy" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Amalfi Coast</div><div class="place-country">Italy</div></div>
-        </div>
-        <div class="place-card">
-          <img src="images/milan.png" alt="Milan, Italy" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Milan</div><div class="place-country">Italy</div></div>
-        </div>
-        <div class="place-card">
-          <img src="images/positano.png" alt="Positano, Italy" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Positano</div><div class="place-country">Italy</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Ireland</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/dublin.png" alt="Dublin, Ireland" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Dublin</div><div class="place-country">Ireland</div></div>
-        </div>
-        <div class="place-card">
-          <img src="images/cliffs-of-moher.png" alt="Cliffs of Moher, Ireland" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Cliffs of Moher</div><div class="place-country">Ireland</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Tanzania</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/serengeti.png" alt="Serengeti, Tanzania" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Serengeti</div><div class="place-country">Tanzania</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>The Bahamas</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/bahamas.png" alt="Nassau, Bahamas" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Nassau</div><div class="place-country">The Bahamas</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Mexico</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/tulum.png" alt="Tulum, Mexico" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Tulum</div><div class="place-country">Mexico</div></div>
-        </div>
-        <div class="place-card">
-          <img src="images/cancun.png" alt="Cancún, Mexico" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Cancún</div><div class="place-country">Mexico</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Germany</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/munich.png" alt="Munich, Germany" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Munich</div><div class="place-country">Germany</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>France</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/paris.png" alt="Paris, France" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Paris</div><div class="place-country">France</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>England</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/london.png" alt="London, England" loading="lazy">
-          <div class="place-overlay"><div class="place-city">London</div><div class="place-country">England</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Japan</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/kyoto.png" alt="Kyoto, Japan" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Kyoto</div><div class="place-country">Japan</div></div>
-        </div>
-        <div class="place-card">
-          <img src="images/tokyo.png" alt="Tokyo, Japan" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Tokyo</div><div class="place-country">Japan</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Morocco</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/marrakech.png" alt="Marrakech, Morocco" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Marrakech</div><div class="place-country">Morocco</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Argentina</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/buenos-aires.png" alt="Buenos Aires, Argentina" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Buenos Aires</div><div class="place-country">Argentina</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Israel</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/jerusalem.png" alt="Jerusalem, Israel" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Jerusalem</div><div class="place-country">Israel</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Greece</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/santorini.png" alt="Santorini, Greece" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Santorini</div><div class="place-country">Greece</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Spain</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/barcelona.png" alt="Barcelona, Spain" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Barcelona</div><div class="place-country">Spain</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="country-section">
-      <h3>Indonesia</h3>
-      <div class="places-grid">
-        <div class="place-card">
-          <img src="images/bali.png" alt="Bali, Indonesia" loading="lazy">
-          <div class="place-overlay"><div class="place-city">Bali</div><div class="place-country">Indonesia</div></div>
-        </div>
-      </div>
+    <div class="places-grid">
+      <div class="place-card"><img src="images/rome.png" alt="Rome" loading="lazy"><div class="place-overlay"><div class="place-city">Rome</div><div class="place-country">Italy</div></div></div>
+      <div class="place-card"><img src="images/amalfi.png" alt="Amalfi Coast" loading="lazy"><div class="place-overlay"><div class="place-city">Amalfi Coast</div><div class="place-country">Italy</div></div></div>
+      <div class="place-card"><img src="images/positano.png" alt="Positano" loading="lazy"><div class="place-overlay"><div class="place-city">Positano</div><div class="place-country">Italy</div></div></div>
+      <div class="place-card"><img src="images/milan.png" alt="Milan" loading="lazy"><div class="place-overlay"><div class="place-city">Milan</div><div class="place-country">Italy</div></div></div>
+      <div class="place-card"><img src="images/dublin.png" alt="Dublin" loading="lazy"><div class="place-overlay"><div class="place-city">Dublin</div><div class="place-country">Ireland</div></div></div>
+      <div class="place-card"><img src="images/cliffs-of-moher.png" alt="Cliffs of Moher" loading="lazy"><div class="place-overlay"><div class="place-city">Cliffs of Moher</div><div class="place-country">Ireland</div></div></div>
+      <div class="place-card"><img src="images/serengeti.png" alt="Serengeti" loading="lazy"><div class="place-overlay"><div class="place-city">Serengeti</div><div class="place-country">Tanzania</div></div></div>
+      <div class="place-card"><img src="images/bahamas.png" alt="Nassau" loading="lazy"><div class="place-overlay"><div class="place-city">Nassau</div><div class="place-country">The Bahamas</div></div></div>
+      <div class="place-card"><img src="images/tulum.png" alt="Tulum" loading="lazy"><div class="place-overlay"><div class="place-city">Tulum</div><div class="place-country">Mexico</div></div></div>
+      <div class="place-card"><img src="images/cancun.png" alt="Cancún" loading="lazy"><div class="place-overlay"><div class="place-city">Cancún</div><div class="place-country">Mexico</div></div></div>
+      <div class="place-card"><img src="images/munich.png" alt="Munich" loading="lazy"><div class="place-overlay"><div class="place-city">Munich</div><div class="place-country">Germany</div></div></div>
+      <div class="place-card"><img src="images/paris.png" alt="Paris" loading="lazy"><div class="place-overlay"><div class="place-city">Paris</div><div class="place-country">France</div></div></div>
+      <div class="place-card"><img src="images/london.png" alt="London" loading="lazy"><div class="place-overlay"><div class="place-city">London</div><div class="place-country">England</div></div></div>
+      <div class="place-card"><img src="images/kyoto.png" alt="Kyoto" loading="lazy"><div class="place-overlay"><div class="place-city">Kyoto</div><div class="place-country">Japan</div></div></div>
+      <div class="place-card"><img src="images/tokyo.png" alt="Tokyo" loading="lazy"><div class="place-overlay"><div class="place-city">Tokyo</div><div class="place-country">Japan</div></div></div>
+      <div class="place-card"><img src="images/marrakech.png" alt="Marrakech" loading="lazy"><div class="place-overlay"><div class="place-city">Marrakech</div><div class="place-country">Morocco</div></div></div>
+      <div class="place-card"><img src="images/buenos-aires.png" alt="Buenos Aires" loading="lazy"><div class="place-overlay"><div class="place-city">Buenos Aires</div><div class="place-country">Argentina</div></div></div>
+      <div class="place-card"><img src="images/jerusalem.png" alt="Jerusalem" loading="lazy"><div class="place-overlay"><div class="place-city">Jerusalem</div><div class="place-country">Israel</div></div></div>
+      <div class="place-card"><img src="images/santorini.png" alt="Santorini" loading="lazy"><div class="place-overlay"><div class="place-city">Santorini</div><div class="place-country">Greece</div></div></div>
+      <div class="place-card"><img src="images/barcelona.png" alt="Barcelona" loading="lazy"><div class="place-overlay"><div class="place-city">Barcelona</div><div class="place-country">Spain</div></div></div>
+      <div class="place-card"><img src="images/bali.png" alt="Bali" loading="lazy"><div class="place-overlay"><div class="place-city">Bali</div><div class="place-country">Indonesia</div></div></div>
+      <div class="place-card"><img src="images/maldives.png" alt="Maldives" loading="lazy"><div class="place-overlay"><div class="place-city">Malé</div><div class="place-country">Maldives</div></div></div>
+      <div class="place-card"><img src="images/florence.png" alt="Florence" loading="lazy"><div class="place-overlay"><div class="place-city">Florence</div><div class="place-country">Italy</div></div></div>
+      <div class="place-card"><img src="images/st-lucia.png" alt="St. Lucia" loading="lazy"><div class="place-overlay"><div class="place-city">St. Lucia</div><div class="place-country">Caribbean</div></div></div>
+      <div class="place-card"><img src="images/dubrovnik.png" alt="Dubrovnik" loading="lazy"><div class="place-overlay"><div class="place-city">Dubrovnik</div><div class="place-country">Croatia</div></div></div>
+      <div class="place-card"><img src="images/lisbon.png" alt="Lisbon" loading="lazy"><div class="place-overlay"><div class="place-city">Lisbon</div><div class="place-country">Portugal</div></div></div>
+      <div class="place-card"><img src="images/cape-town.png" alt="Cape Town" loading="lazy"><div class="place-overlay"><div class="place-city">Cape Town</div><div class="place-country">South Africa</div></div></div>
     </div>
 
   </section>
