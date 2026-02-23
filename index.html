@@ -102,6 +102,46 @@
       -webkit-text-stroke: 0.3px #e8748a;
     }
 
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      margin-left: auto;
+      padding: 4px;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      background: #1a1a1a;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Mobile nav overlay */
+    .nav-links {
+      display: contents;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
     /* Hero Section */
     .hero {
       display: flex;
@@ -346,34 +386,110 @@
     }
 
     @media (max-width: 768px) {
-      .places-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+      .hamburger {
+        display: flex;
       }
-      .places {
-        padding: 60px 24px;
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255,255,255,0.97);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 100;
       }
-      .places h2 {
-        font-size: 32px;
+
+      .nav-links.open {
+        display: flex;
       }
+
+      .nav-links a {
+        font-size: 22px;
+      }
+
+      nav {
+        padding: 16px 24px;
+        gap: 20px;
+        justify-content: space-between;
+      }
+
+      .logo {
+        margin-right: 0;
+      }
+
       .hero {
         flex-direction: column;
         text-align: center;
         padding: 40px 24px;
+        min-height: auto;
+        gap: 32px;
       }
+
       .hero-text h1 {
         font-size: 38px;
       }
-      nav {
-        padding: 16px 24px;
-        gap: 20px;
-        flex-wrap: wrap;
+
+      .hero-text p {
+        font-size: 16px;
+      }
+
+      .hero-photo {
+        width: 320px;
+        height: 400px;
+      }
+
+      .flower-svg {
+        width: 420px !important;
+        height: 420px !important;
+      }
+
+      .photo-frame img {
+        width: 240px;
+        height: 300px;
+      }
+
+      .places-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .places {
+        padding: 60px 24px;
+      }
+
+      .places h2 {
+        font-size: 32px;
+      }
+
+      .contact {
+        padding: 60px 24px;
       }
     }
 
     @media (max-width: 480px) {
       .places-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        width: 260px;
+        height: 340px;
+      }
+
+      .flower-svg {
+        width: 350px !important;
+        height: 350px !important;
+      }
+
+      .photo-frame img {
+        width: 200px;
+        height: 260px;
       }
     }
 
@@ -467,10 +583,17 @@
   <!-- Navigation -->
   <nav>
     <div class="logo">JML</div>
-    <a href="#">More About Me</a>
-    <a href="#places">Places I've Been</a>
-    <a href="#">Blog</a>
-    <a href="#contact">Contact</a>
+    <div class="nav-links">
+      <a href="#">More About Me</a>
+      <a href="#places">Places I've Been</a>
+      <a href="#">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('open');">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </nav>
 
   <!-- Hero Section -->
@@ -574,5 +697,13 @@
     <p class="contact-note">I'll personally reach out within 24 hours.</p>
   </section>
 
+  <script>
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('open');
+        document.querySelector('.hamburger').classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
