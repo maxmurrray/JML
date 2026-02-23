@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JML - Hilary Murray Travel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 48px;
+      gap: 40px;
+      border-bottom: 1px solid #eee;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
+    .logo {
+      border: 2px solid #1a1a1a;
+      padding: 6px 14px;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      margin: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 48px;
+      gap: 40px;
+    }
+
+    .hero-text {
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      line-height: 1.1;
+    }
+
+    .hero-text p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #2a2a2a;
+    }
+
+    .hero-text .reach-out {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 16px;
+      font-weight: 500;
+      border-bottom: 1.5px solid #1a1a1a;
+      padding-bottom: 2px;
+    }
+
+    .hero-text .reach-out:hover {
+      opacity: 0.7;
+    }
+
+    /* Photo Section */
+    .hero-photo {
+      position: relative;
+      flex-shrink: 0;
+      width: 380px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Flower petals behind the photo */
+    .flower-petal {
+      position: absolute;
+      width: 140px;
+      height: 180px;
+      background: #e8748a;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.85;
+    }
+
+    .petal-1 {
+      top: -20px;
+      right: 40px;
+      transform: rotate(-15deg);
+    }
+
+    .petal-2 {
+      top: 20px;
+      right: -30px;
+      transform: rotate(50deg);
+    }
+
+    .petal-3 {
+      bottom: 10px;
+      right: -20px;
+      transform: rotate(120deg);
+    }
+
+    .petal-4 {
+      bottom: -25px;
+      right: 60px;
+      transform: rotate(180deg);
+    }
+
+    .petal-5 {
+      bottom: 20px;
+      left: -10px;
+      transform: rotate(240deg);
+    }
+
+    .petal-6 {
+      top: 30px;
+      left: -15px;
+      transform: rotate(-60deg);
+    }
+
+    /* SVG flower behind photo */
+    .flower-svg {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+
+    .photo-frame {
+      position: relative;
+      z-index: 1;
+      transform: rotate(2deg);
+      border: 3px solid #2a2a2a;
+      padding: 6px;
+      background: #fff;
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .photo-frame img {
+      display: block;
+      width: 280px;
+      height: 320px;
+      object-fit: cover;
+      object-position: center top;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#">Places I've Been</a>
+    <a href="#">Blog</a>
+    <div class="logo">JML</div>
+    <a href="#">More About Me</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Hi, I'm Hilary.</h1>
+      <p>I am in love with traveling. I've been to places that took my breath away and I want to help you have those same moments.</p>
+      <p>I'm a travel advisor with Valerie Wilson Travel. Tell me where you want to go and we'll make it happen. I handle everything or as much as you want me to handle.</p>
+      <p>I've booked trips all over the world.</p>
+      <a href="#" class="reach-out">Reach Out &rarr;</a>
+    </div>
+
+    <div class="hero-photo">
+      <!-- Flower petals SVG -->
+      <svg class="flower-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Petal 1 - top right -->
+        <path d="M 280 100 Q 350 50, 370 140 Q 390 200, 300 200 Q 240 190, 260 130 Q 265 105, 280 100Z"
+              fill="#e8748a" opacity="0.9"/>
+        <!-- Petal 2 - right -->
+        <path d="M 370 170 Q 440 180, 420 270 Q 410 330, 340 290 Q 300 260, 330 210 Q 345 180, 370 170Z"
+              fill="#e8748a" opacity="0.85"/>
+        <!-- Petal 3 - bottom right -->
+        <path d="M 360 310 Q 410 370, 350 420 Q 310 450, 280 380 Q 260 330, 310 310 Q 340 300, 360 310Z"
+              fill="#e8748a" opacity="0.9"/>
+        <!-- Petal 4 - bottom -->
+        <path d="M 260 400 Q 250 470, 180 450 Q 120 430, 150 370 Q 170 320, 220 350 Q 260 370, 260 400Z"
+              fill="#e8748a" opacity="0.85"/>
+        <!-- Petal 5 - bottom left -->
+        <path d="M 140 350 Q 80 370, 70 290 Q 65 230, 130 250 Q 175 265, 160 310 Q 150 340, 140 350Z"
+              fill="#e8748a" opacity="0.9"/>
+        <!-- Petal 6 - left -->
+        <path d="M 100 220 Q 50 170, 100 110 Q 140 70, 170 130 Q 190 175, 145 195 Q 115 210, 100 220Z"
+              fill="#e8748a" opacity="0.85"/>
+        <!-- Petal 7 - top left -->
+        <path d="M 170 100 Q 180 30, 245 50 Q 290 65, 270 125 Q 255 165, 210 145 Q 170 125, 170 100Z"
+              fill="#e8748a" opacity="0.9"/>
+      </svg>
+
+      <!-- Photo with frame -->
+      <div class="photo-frame">
+        <img src="Hilary+Murray.webp" alt="Hilary Murray">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
