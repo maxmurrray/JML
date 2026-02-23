@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JML - Hilary Murray Travel</title>
+  <link rel="stylesheet" href="https://use.typekit.net/gsr2ndn.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Arima:wght@100;200;300;400;500;600;700&display=swap');
 
     * {
       margin: 0;
@@ -14,7 +15,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'arima', sans-serif;
       background: #fff;
       color: #1a1a1a;
       min-height: 100vh;
@@ -27,26 +28,29 @@
       justify-content: center;
       padding: 24px 48px;
       gap: 40px;
-      border-bottom: 1px solid #eee;
+      border-bottom: none;
     }
 
     nav a {
       text-decoration: none;
       color: #1a1a1a;
       font-size: 15px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.02em;
+      padding-bottom: 2px;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.25s ease;
     }
 
     nav a:hover {
-      opacity: 0.7;
+      border-bottom-color: #e8748a;
     }
 
     .logo {
       border: 2px solid #1a1a1a;
-      padding: 6px 14px;
+      padding: 4px 10px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 22px;
       letter-spacing: 0.1em;
       margin: 0 20px;
     }
@@ -56,53 +60,72 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1100px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 60px 48px;
-      gap: 40px;
+      padding: 40px 64px;
+      gap: 60px;
+      min-height: calc(100vh - 80px);
     }
 
     .hero-text {
       flex: 1;
-      max-width: 480px;
+      max-width: 520px;
     }
 
     .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 52px;
+      font-family: 'arima', serif;
+      font-size: 60px;
       font-weight: 700;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       line-height: 1.1;
     }
 
     .hero-text p {
-      font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 20px;
+      font-size: 18px;
+      line-height: 1.75;
+      margin-bottom: 22px;
       color: #2a2a2a;
     }
 
     .hero-text .reach-out {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 14px;
       text-decoration: none;
       color: #1a1a1a;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
-      border-bottom: 1.5px solid #1a1a1a;
-      padding-bottom: 2px;
+      padding: 8px 16px;
+      position: relative;
     }
 
-    .hero-text .reach-out:hover {
-      opacity: 0.7;
+    .reach-out-circle {
+      position: absolute;
+      top: -6px;
+      left: -12px;
+      width: calc(100% + 24px);
+      height: calc(100% + 12px);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-text .reach-out:hover .reach-out-circle {
+      opacity: 1;
+    }
+
+    .reach-out-circle path {
+      fill: none;
+      stroke: #e8748a;
+      stroke-width: 2.5;
+      stroke-linecap: round;
     }
 
     /* Photo Section */
     .hero-photo {
       position: relative;
       flex-shrink: 0;
-      width: 380px;
-      height: 420px;
+      width: 500px;
+      height: 580px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -157,8 +180,8 @@
     /* SVG flower behind photo */
     .flower-svg {
       position: absolute;
-      width: 480px;
-      height: 480px;
+      width: 620px;
+      height: 620px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -177,8 +200,8 @@
 
     .photo-frame img {
       display: block;
-      width: 280px;
-      height: 320px;
+      width: 380px;
+      height: 460px;
       object-fit: cover;
       object-position: center top;
     }
@@ -337,33 +360,37 @@
       <p>I am in love with traveling. I've been to places that took my breath away and I want to help you have those same moments.</p>
       <p>I'm a travel advisor with Valerie Wilson Travel. Tell me where you want to go and we'll make it happen. I handle everything or as much as you want me to handle.</p>
       <p>I've booked trips all over the world.</p>
-      <a href="#" class="reach-out">Reach Out &rarr;</a>
+      <a href="#" class="reach-out">Reach Out &rarr;
+        <svg class="reach-out-circle" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30 8 Q 5 12, 8 30 Q 10 52, 60 54 Q 120 58, 170 48 Q 198 40, 195 25 Q 192 8, 150 5 Q 100 -2, 50 6 Q 20 10, 12 28 Q 8 42, 40 50 Q 90 58, 155 50" />
+        </svg>
+      </a>
     </div>
 
     <div class="hero-photo">
       <!-- Flower petals SVG -->
       <svg class="flower-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <!-- Petal 1 - top right -->
-        <path d="M 280 100 Q 350 50, 370 140 Q 390 200, 300 200 Q 240 190, 260 130 Q 265 105, 280 100Z"
-              fill="#e8748a" opacity="0.9"/>
-        <!-- Petal 2 - right -->
-        <path d="M 370 170 Q 440 180, 420 270 Q 410 330, 340 290 Q 300 260, 330 210 Q 345 180, 370 170Z"
+        <!-- Big round petal - top right -->
+        <ellipse cx="370" cy="120" rx="85" ry="80" transform="rotate(-20, 370, 120)"
+              fill="#e8748a" opacity="0.88"/>
+        <!-- Big round petal - right -->
+        <ellipse cx="410" cy="270" rx="78" ry="85" transform="rotate(15, 410, 270)"
               fill="#e8748a" opacity="0.85"/>
-        <!-- Petal 3 - bottom right -->
-        <path d="M 360 310 Q 410 370, 350 420 Q 310 450, 280 380 Q 260 330, 310 310 Q 340 300, 360 310Z"
+        <!-- Big round petal - bottom right -->
+        <ellipse cx="350" cy="410" rx="80" ry="75" transform="rotate(-10, 350, 410)"
               fill="#e8748a" opacity="0.9"/>
-        <!-- Petal 4 - bottom -->
-        <path d="M 260 400 Q 250 470, 180 450 Q 120 430, 150 370 Q 170 320, 220 350 Q 260 370, 260 400Z"
+        <!-- Round petal - bottom -->
+        <ellipse cx="220" cy="430" rx="70" ry="72" transform="rotate(8, 220, 430)"
               fill="#e8748a" opacity="0.85"/>
-        <!-- Petal 5 - bottom left -->
-        <path d="M 140 350 Q 80 370, 70 290 Q 65 230, 130 250 Q 175 265, 160 310 Q 150 340, 140 350Z"
-              fill="#e8748a" opacity="0.9"/>
-        <!-- Petal 6 - left -->
-        <path d="M 100 220 Q 50 170, 100 110 Q 140 70, 170 130 Q 190 175, 145 195 Q 115 210, 100 220Z"
+        <!-- Swooping petal - bottom left -->
+        <ellipse cx="110" cy="380" rx="75" ry="65" transform="rotate(25, 110, 380)"
+              fill="#e8748a" opacity="0.88"/>
+        <!-- Round petal - upper left -->
+        <ellipse cx="105" cy="190" rx="68" ry="72" transform="rotate(-12, 105, 190)"
               fill="#e8748a" opacity="0.85"/>
-        <!-- Petal 7 - top left -->
-        <path d="M 170 100 Q 180 30, 245 50 Q 290 65, 270 125 Q 255 165, 210 145 Q 170 125, 170 100Z"
-              fill="#e8748a" opacity="0.9"/>
+        <!-- Smaller accent petal - top -->
+        <ellipse cx="230" cy="85" rx="60" ry="55" transform="rotate(10, 230, 85)"
+              fill="#e8748a" opacity="0.82"/>
       </svg>
 
       <!-- Photo with frame -->
