@@ -23,47 +23,15 @@
       position: relative;
     }
 
-    /* Floating background blobs */
-    body::before,
-    body::after {
-      content: '';
+    /* Floating background blobs (JS-driven) */
+    .blob {
       position: fixed;
       border-radius: 50%;
+      background: #e8748a;
       opacity: 0.06;
       z-index: -1;
       pointer-events: none;
-    }
-
-    body::before {
-      width: 500px;
-      height: 500px;
-      background: #e8748a;
-      top: -100px;
-      left: -150px;
-      animation: floatBlob1 20s ease-in-out infinite;
-    }
-
-    body::after {
-      width: 400px;
-      height: 400px;
-      background: #e8748a;
-      bottom: -80px;
-      right: -100px;
-      animation: floatBlob2 25s ease-in-out infinite;
-    }
-
-    @keyframes floatBlob1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(60px, 40px) scale(1.05); }
-      50% { transform: translate(30px, 80px) scale(0.95); }
-      75% { transform: translate(-20px, 50px) scale(1.03); }
-    }
-
-    @keyframes floatBlob2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(-50px, -30px) scale(1.04); }
-      50% { transform: translate(-20px, -70px) scale(0.96); }
-      75% { transform: translate(30px, -40px) scale(1.02); }
+      will-change: transform;
     }
 
     /* Navigation */
@@ -698,12 +666,116 @@
   </section>
 
   <script>
+    // Mobile nav
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.addEventListener('click', () => {
         document.querySelector('.nav-links').classList.remove('open');
         document.querySelector('.hamburger').classList.remove('active');
       });
     });
+
+    // Physics blobs
+    (function() {
+      const blobs = [];
+      const count = 3;
+      const sizes = [420, 340, 280];
+      const vw = () => window.innerWidth;
+      const vh = () => window.innerHeight;
+
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'blob';
+        const size = sizes[i];
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        document.body.appendChild(el);
+
+        blobs.push({
+          el,
+          r: size / 2,
+          x: Math.random() * (vw() - size),
+          y: Math.random() * (vh() - size),
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          squash: 1,
+          squashAngle: 0
+        });
+      }
+
+      function step() {
+        // Move
+        for (const b of blobs) {
+          b.x += b.vx;
+          b.y += b.vy;
+
+          // Bounce off walls
+          if (b.x < -b.r * 0.5) { b.x = -b.r * 0.5; b.vx *= -0.8; }
+          if (b.x > vw() - b.r * 0.5) { b.x = vw() - b.r * 0.5; b.vx *= -0.8; }
+          if (b.y < -b.r * 0.5) { b.y = -b.r * 0.5; b.vy *= -0.8; }
+          if (b.y > vh() - b.r * 0.5) { b.y = vh() - b.r * 0.5; b.vy *= -0.8; }
+
+          // Gentle drift force
+          b.vx += (Math.random() - 0.5) * 0.02;
+          b.vy += (Math.random() - 0.5) * 0.02;
+
+          // Dampen
+          b.vx *= 0.998;
+          b.vy *= 0.998;
+
+          // Ease squash back to normal
+          b.squash += (1 - b.squash) * 0.05;
+        }
+
+        // Collision
+        for (let i = 0; i < blobs.length; i++) {
+          for (let j = i + 1; j < blobs.length; j++) {
+            const a = blobs[i], b = blobs[j];
+            const cx1 = a.x + a.r, cy1 = a.y + a.r;
+            const cx2 = b.x + b.r, cy2 = b.y + b.r;
+            const dx = cx2 - cx1, dy = cy2 - cy1;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const minDist = a.r + b.r;
+
+            if (dist < minDist && dist > 0) {
+              const nx = dx / dist, ny = dy / dist;
+              const overlap = minDist - dist;
+              const push = overlap * 0.15;
+
+              // Push apart
+              a.x -= nx * push;
+              a.y -= ny * push;
+              b.x += nx * push;
+              b.y += ny * push;
+
+              // Bounce velocities
+              a.vx -= nx * 0.08;
+              a.vy -= ny * 0.08;
+              b.vx += nx * 0.08;
+              b.vy += ny * 0.08;
+
+              // Squash effect
+              const angle = Math.atan2(dy, dx);
+              a.squash = Math.max(0.85, 1 - overlap / minDist * 0.4);
+              a.squashAngle = angle;
+              b.squash = Math.max(0.85, 1 - overlap / minDist * 0.4);
+              b.squashAngle = angle + Math.PI;
+            }
+          }
+        }
+
+        // Render
+        for (const b of blobs) {
+          const sx = 1 + (1 - b.squash) * 0.3;
+          const sy = b.squash;
+          const angle = b.squashAngle * (180 / Math.PI);
+          b.el.style.transform = `translate(${b.x}px, ${b.y}px) rotate(${angle}deg) scale(${sx}, ${sy}) rotate(${-angle}deg)`;
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    })();
   </script>
 </body>
 </html>
