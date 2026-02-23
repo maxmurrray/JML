@@ -102,16 +102,10 @@
     .reach-out-circle {
       position: absolute;
       top: -6px;
-      left: -6px;
-      width: calc(100% + 12px);
+      left: -14px;
+      width: calc(100% + 20px);
       height: calc(100% + 12px);
       pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .hero-text .reach-out:hover .reach-out-circle {
-      opacity: 1;
     }
 
     .reach-out-circle path {
@@ -119,6 +113,13 @@
       stroke: #e8748a;
       stroke-width: 2.5;
       stroke-linecap: round;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      transition: stroke-dashoffset 1s ease;
+    }
+
+    .hero-text .reach-out:hover .reach-out-circle path {
+      stroke-dashoffset: 0;
     }
 
     /* Photo Section */
