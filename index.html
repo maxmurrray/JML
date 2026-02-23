@@ -19,31 +19,63 @@
       background: #fff;
       color: #1a1a1a;
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating background blobs */
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.06;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    body::before {
+      width: 500px;
+      height: 500px;
+      background: #e8748a;
+      top: -100px;
+      left: -150px;
+      animation: floatBlob1 20s ease-in-out infinite;
+    }
+
+    body::after {
+      width: 400px;
+      height: 400px;
+      background: #e8748a;
+      bottom: -80px;
+      right: -100px;
+      animation: floatBlob2 25s ease-in-out infinite;
+    }
+
+    @keyframes floatBlob1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(60px, 40px) scale(1.05); }
+      50% { transform: translate(30px, 80px) scale(0.95); }
+      75% { transform: translate(-20px, 50px) scale(1.03); }
+    }
+
+    @keyframes floatBlob2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(-50px, -30px) scale(1.04); }
+      50% { transform: translate(-20px, -70px) scale(0.96); }
+      75% { transform: translate(30px, -40px) scale(1.02); }
     }
 
     /* Navigation */
     nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 24px 48px;
-      gap: 40px;
+      justify-content: flex-start;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 24px 64px;
+      gap: 32px;
       border-bottom: none;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #1a1a1a;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      padding-bottom: 2px;
-      border-bottom: 1.5px solid transparent;
-      transition: border-color 0.25s ease;
-    }
-
-    nav a:hover {
-      border-bottom-color: #e8748a;
     }
 
     .logo {
@@ -52,7 +84,22 @@
       font-weight: 700;
       font-size: 22px;
       letter-spacing: 0.1em;
-      margin: 0 20px;
+      margin-right: 16px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      -webkit-text-stroke: 0.3px #1a1a1a;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #e8748a;
+      -webkit-text-stroke: 0.3px #e8748a;
     }
 
     /* Hero Section */
@@ -419,10 +466,10 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#places">Places I've Been</a>
-    <a href="#">Blog</a>
     <div class="logo">JML</div>
     <a href="#">More About Me</a>
+    <a href="#places">Places I've Been</a>
+    <a href="#">Blog</a>
     <a href="#contact">Contact</a>
   </nav>
 
