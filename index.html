@@ -27,11 +27,12 @@
     .blob {
       position: fixed;
       border-radius: 50%;
-      background: #e8748a;
-      opacity: 0.06;
+      background: radial-gradient(circle, #e8748a 0%, #3a7cc2 100%);
+      opacity: 0.12;
       z-index: -1;
       pointer-events: none;
       will-change: transform;
+      filter: blur(30px);
     }
 
     /* Navigation */
@@ -608,7 +609,6 @@
     <div class="nav-links">
       <a href="#">More About Me</a>
       <a href="#places">Places I've Been</a>
-      <a href="#">Blog</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('open');">
