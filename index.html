@@ -576,65 +576,52 @@
       margin-bottom: 36px;
     }
 
-    .contact-form {
+    .contact-methods {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+    }
+
+    .contact-method {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      text-align: left;
-    }
-
-    .contact-form label {
-      font-family: 'arima', serif;
-      font-size: 14px;
-      color: #444;
-      margin-bottom: -8px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      padding: 12px 16px;
-      border: 1.5px solid #ddd;
-      border-radius: 8px;
-      outline: none;
-      transition: border-color 0.3s ease;
+      align-items: center;
+      gap: 8px;
+      padding: 28px 40px;
+      border: 1.5px solid #eee;
+      border-radius: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
       background: #fafafa;
     }
 
-    .contact-form input:focus,
-    .contact-form textarea:focus {
+    .contact-method:hover {
       border-color: #e8748a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(232, 116, 138, 0.15);
     }
 
-    .contact-form textarea {
-      resize: vertical;
-      min-height: 80px;
+    .contact-icon {
+      font-size: 28px;
     }
 
-    .contact-form button {
+    .contact-label {
       font-family: 'arima', serif;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 14px 24px;
-      background: #1a1a1a;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: background 0.3s ease;
+      font-size: 18px;
+      font-weight: 700;
     }
 
-    .contact-form button:hover {
-      background: #e8748a;
+    .contact-value {
+      font-size: 14px;
+      color: #888;
     }
 
-    .contact-note {
-      font-family: 'arima', serif;
-      font-size: 13px;
-      color: #999;
-      margin-top: 16px;
+    @media (max-width: 480px) {
+      .contact-methods {
+        flex-direction: column;
+        gap: 16px;
+      }
     }
   </style>
 </head>
@@ -754,18 +741,20 @@
 
   <!-- Contact -->
   <section class="contact" id="contact">
-    <h2>Let's plan your trip.</h2>
-    <p class="contact-subtitle">Leave your name and the best way to reach you. I'll be in touch.</p>
-    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <label for="name">Your name</label>
-      <input type="text" id="name" name="name" placeholder="First and last" required>
-      <label for="contact-info">Email or phone number</label>
-      <input type="text" id="contact-info" name="contact" placeholder="Whichever you prefer" required>
-      <label for="message">Where are you dreaming of going?</label>
-      <textarea id="message" name="message" placeholder="Optional — but I'd love to know"></textarea>
-      <button type="submit">Send It Over</button>
-    </form>
-    <p class="contact-note">I'll personally reach out within 24 hours.</p>
+    <h2>Text or email me!</h2>
+    <p class="contact-subtitle">I'd love to help you plan your next trip.</p>
+    <div class="contact-methods">
+      <a href="tel:+15551234567" class="contact-method">
+        <span class="contact-icon">📱</span>
+        <span class="contact-label">Text Me</span>
+        <span class="contact-value">(555) 123-4567</span>
+      </a>
+      <a href="mailto:hilary@example.com" class="contact-method">
+        <span class="contact-icon">✉️</span>
+        <span class="contact-label">Email Me</span>
+        <span class="contact-value">hilary@example.com</span>
+      </a>
+    </div>
   </section>
 
   <script>
