@@ -576,52 +576,29 @@
       margin-bottom: 36px;
     }
 
-    .contact-methods {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-    }
-
-    .contact-method {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      padding: 28px 40px;
-      border: 1.5px solid #eee;
-      border-radius: 12px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-      background: #fafafa;
-    }
-
-    .contact-method:hover {
-      border-color: #e8748a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(232, 116, 138, 0.15);
-    }
-
-    .contact-icon {
-      font-size: 28px;
-    }
-
-    .contact-label {
+    .contact-links {
       font-family: 'arima', serif;
       font-size: 18px;
-      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .contact-value {
-      font-size: 14px;
-      color: #888;
+    .contact-link {
+      color: #e8748a;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
     }
 
-    @media (max-width: 480px) {
-      .contact-methods {
-        flex-direction: column;
-        gap: 16px;
-      }
+    .contact-link:hover {
+      opacity: 0.7;
+    }
+
+    .contact-divider {
+      color: #bbb;
+      font-size: 15px;
     }
   </style>
 </head>
@@ -743,18 +720,11 @@
   <section class="contact" id="contact">
     <h2>Text or email me!</h2>
     <p class="contact-subtitle">I'd love to help you plan your next trip.</p>
-    <div class="contact-methods">
-      <a href="tel:+15551234567" class="contact-method">
-        <span class="contact-icon">📱</span>
-        <span class="contact-label">Text Me</span>
-        <span class="contact-value">(555) 123-4567</span>
-      </a>
-      <a href="mailto:hilary@example.com" class="contact-method">
-        <span class="contact-icon">✉️</span>
-        <span class="contact-label">Email Me</span>
-        <span class="contact-value">hilary@example.com</span>
-      </a>
-    </div>
+    <p class="contact-links">
+      <a href="sms:+15551234567" class="contact-link">📱 (555) 123-4567</a>
+      <span class="contact-divider">or</span>
+      <a href="mailto:hilary@example.com" class="contact-link">✉️ hilary@example.com</a>
+    </p>
   </section>
 
   <script>
