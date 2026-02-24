@@ -378,17 +378,84 @@
       line-height: 1.6;
     }
 
-    .places-grid {
+    .countries-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .country-btn {
+      font-family: 'arima', serif;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 14px 20px;
+      background: #fafafa;
+      border: 1.5px solid #eee;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.3s ease;
+      color: #2a2a2a;
+    }
+
+    .country-btn:hover {
+      border-color: #e8748a;
+      background: #fff;
+    }
+
+    .country-btn.active {
+      border-color: #e8748a;
+      background: #fff;
+      color: #e8748a;
+    }
+
+    .country-btn::after {
+      content: '+';
+      float: right;
+      font-weight: 400;
+      transition: transform 0.3s ease;
+    }
+
+    .country-btn.active::after {
+      content: '−';
+    }
+
+    .country-dropdown {
+      grid-column: 1 / -1;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+      padding: 0 0;
+    }
+
+    .country-dropdown.open {
+      max-height: 400px;
+      padding: 12px 0;
+    }
+
+    .country-cities {
+      display: flex;
       gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .country-cities::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .country-cities::-webkit-scrollbar-thumb {
+      background: #ddd;
+      border-radius: 4px;
     }
 
     .place-card {
       position: relative;
       border-radius: 10px;
       overflow: hidden;
-      aspect-ratio: 4 / 3;
+      min-width: 240px;
+      height: 180px;
+      flex-shrink: 0;
       cursor: pointer;
     }
 
@@ -532,7 +599,7 @@
     }
 
     @media (max-width: 480px) {
-      .places-grid {
+      .countries-grid {
         grid-template-columns: 1fr;
       }
 
@@ -681,35 +748,31 @@
     <h2>Places I've Been</h2>
     <p class="subtitle">Some of my favorite destinations around the world. Every trip taught me something new.</p>
 
-    <div class="places-grid">
-      <div class="place-card"><img src="images/rome.jpg" alt="Rome" loading="lazy"><div class="place-overlay"><div class="place-city">Rome</div><div class="place-country">Italy</div></div></div>
-      <div class="place-card"><img src="images/amalfi.jpg" alt="Amalfi Coast" loading="lazy"><div class="place-overlay"><div class="place-city">Amalfi Coast</div><div class="place-country">Italy</div></div></div>
-      <div class="place-card"><img src="images/venice.jpg" alt="Venice" loading="lazy"><div class="place-overlay"><div class="place-city">Venice</div><div class="place-country">Italy</div></div></div>
-      <div class="place-card"><img src="images/milan.jpg" alt="Milan" loading="lazy"><div class="place-overlay"><div class="place-city">Milan</div><div class="place-country">Italy</div></div></div>
-      <div class="place-card"><img src="images/dublin.jpg" alt="Dublin" loading="lazy"><div class="place-overlay"><div class="place-city">Dublin</div><div class="place-country">Ireland</div></div></div>
-      <div class="place-card"><img src="images/cliffs-of-moher.jpg" alt="Cliffs of Moher" loading="lazy"><div class="place-overlay"><div class="place-city">Cliffs of Moher</div><div class="place-country">Ireland</div></div></div>
-      <div class="place-card"><img src="images/serengeti.jpg" alt="Serengeti" loading="lazy"><div class="place-overlay"><div class="place-city">Serengeti</div><div class="place-country">Tanzania</div></div></div>
-      <div class="place-card"><img src="images/bahamas.jpg" alt="Nassau" loading="lazy"><div class="place-overlay"><div class="place-city">Nassau</div><div class="place-country">The Bahamas</div></div></div>
-      <div class="place-card"><img src="images/tulum.jpg" alt="Tulum" loading="lazy"><div class="place-overlay"><div class="place-city">Tulum</div><div class="place-country">Mexico</div></div></div>
-      <div class="place-card"><img src="images/cancun.jpg" alt="Cancún" loading="lazy"><div class="place-overlay"><div class="place-city">Cancún</div><div class="place-country">Mexico</div></div></div>
-      <div class="place-card"><img src="images/munich.jpg" alt="Munich" loading="lazy"><div class="place-overlay"><div class="place-city">Munich</div><div class="place-country">Germany</div></div></div>
-      <div class="place-card"><img src="images/paris.jpg" alt="Paris" loading="lazy"><div class="place-overlay"><div class="place-city">Paris</div><div class="place-country">France</div></div></div>
-      <div class="place-card"><img src="images/london.jpg" alt="London" loading="lazy"><div class="place-overlay"><div class="place-city">London</div><div class="place-country">England</div></div></div>
-      <div class="place-card"><img src="images/kyoto.jpg" alt="Kyoto" loading="lazy"><div class="place-overlay"><div class="place-city">Kyoto</div><div class="place-country">Japan</div></div></div>
-      <div class="place-card"><img src="images/tokyo.jpg" alt="Tokyo" loading="lazy"><div class="place-overlay"><div class="place-city">Tokyo</div><div class="place-country">Japan</div></div></div>
-      <div class="place-card"><img src="images/marrakech.jpg" alt="Marrakech" loading="lazy"><div class="place-overlay"><div class="place-city">Marrakech</div><div class="place-country">Morocco</div></div></div>
-      <div class="place-card"><img src="images/buenos-aires.jpg" alt="Buenos Aires" loading="lazy"><div class="place-overlay"><div class="place-city">Buenos Aires</div><div class="place-country">Argentina</div></div></div>
-      <div class="place-card"><img src="images/jerusalem.jpg" alt="Jerusalem" loading="lazy"><div class="place-overlay"><div class="place-city">Jerusalem</div><div class="place-country">Israel</div></div></div>
-      <div class="place-card"><img src="images/santorini.jpg" alt="Santorini" loading="lazy"><div class="place-overlay"><div class="place-city">Santorini</div><div class="place-country">Greece</div></div></div>
-      <div class="place-card"><img src="images/barcelona.jpg" alt="Barcelona" loading="lazy"><div class="place-overlay"><div class="place-city">Barcelona</div><div class="place-country">Spain</div></div></div>
-      <div class="place-card"><img src="images/bali.jpg" alt="Bali" loading="lazy"><div class="place-overlay"><div class="place-city">Bali</div><div class="place-country">Indonesia</div></div></div>
-      <div class="place-card"><img src="images/maldives.jpg" alt="Maldives" loading="lazy"><div class="place-overlay"><div class="place-city">Malé</div><div class="place-country">Maldives</div></div></div>
-      <div class="place-card"><img src="images/florence.jpg" alt="Florence" loading="lazy"><div class="place-overlay"><div class="place-city">Florence</div><div class="place-country">Italy</div></div></div>
-      <div class="place-card"><img src="images/st-lucia.jpg" alt="St. Lucia" loading="lazy"><div class="place-overlay"><div class="place-city">St. Lucia</div><div class="place-country">Caribbean</div></div></div>
-      <div class="place-card"><img src="images/dubrovnik.jpg" alt="Dubrovnik" loading="lazy"><div class="place-overlay"><div class="place-city">Dubrovnik</div><div class="place-country">Croatia</div></div></div>
-      <div class="place-card"><img src="images/lisbon.jpg" alt="Lisbon" loading="lazy"><div class="place-overlay"><div class="place-city">Lisbon</div><div class="place-country">Portugal</div></div></div>
-      <div class="place-card"><img src="images/cape-town.jpg" alt="Cape Town" loading="lazy"><div class="place-overlay"><div class="place-city">Cape Town</div><div class="place-country">South Africa</div></div></div>
-      <div class="place-card"><img src="images/patagonia.jpg" alt="Patagonia" loading="lazy"><div class="place-overlay"><div class="place-city">Patagonia</div><div class="place-country">Argentina</div></div></div>
+    <div class="countries-grid" id="countriesGrid">
+      <button class="country-btn" data-country="italy">Italy</button>
+      <button class="country-btn" data-country="ireland">Ireland</button>
+      <button class="country-btn" data-country="japan">Japan</button>
+      <button class="country-btn" data-country="mexico">Mexico</button>
+      <button class="country-btn" data-country="argentina">Argentina</button>
+      <button class="country-btn" data-country="france">France</button>
+      <button class="country-btn" data-country="england">England</button>
+      <button class="country-btn" data-country="spain">Spain</button>
+      <button class="country-btn" data-country="greece">Greece</button>
+      <button class="country-btn" data-country="germany">Germany</button>
+      <button class="country-btn" data-country="morocco">Morocco</button>
+      <button class="country-btn" data-country="tanzania">Tanzania</button>
+      <button class="country-btn" data-country="bahamas">The Bahamas</button>
+      <button class="country-btn" data-country="indonesia">Indonesia</button>
+      <button class="country-btn" data-country="maldives">Maldives</button>
+      <button class="country-btn" data-country="israel">Israel</button>
+      <button class="country-btn" data-country="croatia">Croatia</button>
+      <button class="country-btn" data-country="portugal">Portugal</button>
+      <button class="country-btn" data-country="south-africa">South Africa</button>
+      <button class="country-btn" data-country="caribbean">Caribbean</button>
+    </div>
+
+    <div class="country-dropdown" id="countryDropdown">
+      <div class="country-cities" id="countryCities"></div>
     </div>
 
   </section>
@@ -726,6 +789,103 @@
   </section>
 
   <script>
+    // Country accordion
+    const cityData = {
+      italy: [
+        { city: 'Rome', img: 'images/rome.jpg' },
+        { city: 'Amalfi Coast', img: 'images/amalfi.jpg' },
+        { city: 'Venice', img: 'images/venice.jpg' },
+        { city: 'Milan', img: 'images/milan.jpg' },
+        { city: 'Florence', img: 'images/florence.jpg' },
+      ],
+      ireland: [
+        { city: 'Dublin', img: 'images/dublin.jpg' },
+        { city: 'Cliffs of Moher', img: 'images/cliffs-of-moher.jpg' },
+      ],
+      japan: [
+        { city: 'Kyoto', img: 'images/kyoto.jpg' },
+        { city: 'Tokyo', img: 'images/tokyo.jpg' },
+      ],
+      mexico: [
+        { city: 'Tulum', img: 'images/tulum.jpg' },
+        { city: 'Cancún', img: 'images/cancun.jpg' },
+      ],
+      argentina: [
+        { city: 'Buenos Aires', img: 'images/buenos-aires.jpg' },
+        { city: 'Patagonia', img: 'images/patagonia.jpg' },
+      ],
+      france: [{ city: 'Paris', img: 'images/paris.jpg' }],
+      england: [{ city: 'London', img: 'images/london.jpg' }],
+      spain: [{ city: 'Barcelona', img: 'images/barcelona.jpg' }],
+      greece: [{ city: 'Santorini', img: 'images/santorini.jpg' }],
+      germany: [{ city: 'Munich', img: 'images/munich.jpg' }],
+      morocco: [{ city: 'Marrakech', img: 'images/marrakech.jpg' }],
+      tanzania: [{ city: 'Serengeti', img: 'images/serengeti.jpg' }],
+      bahamas: [{ city: 'Nassau', img: 'images/bahamas.jpg' }],
+      indonesia: [{ city: 'Bali', img: 'images/bali.jpg' }],
+      maldives: [{ city: 'Malé', img: 'images/maldives.jpg' }],
+      israel: [{ city: 'Jerusalem', img: 'images/jerusalem.jpg' }],
+      croatia: [{ city: 'Dubrovnik', img: 'images/dubrovnik.jpg' }],
+      portugal: [{ city: 'Lisbon', img: 'images/lisbon.jpg' }],
+      'south-africa': [{ city: 'Cape Town', img: 'images/cape-town.jpg' }],
+      caribbean: [{ city: 'St. Lucia', img: 'images/st-lucia.jpg' }],
+    };
+
+    const grid = document.getElementById('countriesGrid');
+    const dropdown = document.getElementById('countryDropdown');
+    const citiesContainer = document.getElementById('countryCities');
+    let activeCountry = null;
+
+    grid.addEventListener('click', (e) => {
+      const btn = e.target.closest('.country-btn');
+      if (!btn) return;
+      const country = btn.dataset.country;
+
+      // Close if same country clicked
+      if (activeCountry === country) {
+        btn.classList.remove('active');
+        dropdown.classList.remove('open');
+        activeCountry = null;
+        // Move dropdown out
+        return;
+      }
+
+      // Remove previous active
+      grid.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Build city cards
+      const cities = cityData[country] || [];
+      citiesContainer.innerHTML = cities.map(c => `
+        <div class="place-card">
+          <img src="${c.img}" alt="${c.city}" loading="lazy">
+          <div class="place-overlay">
+            <div class="place-city">${c.city}</div>
+          </div>
+        </div>
+      `).join('');
+
+      // Position dropdown after the row containing the clicked button
+      const btnRect = btn.getBoundingClientRect();
+      const gridRect = grid.getBoundingClientRect();
+      const buttons = [...grid.querySelectorAll('.country-btn')];
+      const btnIndex = buttons.indexOf(btn);
+
+      // Find last button in the same row
+      const btnTop = btn.offsetTop;
+      let insertAfter = btn;
+      for (let i = btnIndex + 1; i < buttons.length; i++) {
+        if (buttons[i].offsetTop === btnTop) {
+          insertAfter = buttons[i];
+        } else break;
+      }
+
+      // Insert dropdown after that row
+      insertAfter.after(dropdown);
+      dropdown.classList.add('open');
+      activeCountry = country;
+    });
+
     // Mobile nav
     document.querySelectorAll('.nav-links a').forEach(a => {
       a.addEventListener('click', () => {
