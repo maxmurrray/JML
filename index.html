@@ -27,12 +27,36 @@
     .blob {
       position: fixed;
       border-radius: 50%;
-      background: radial-gradient(circle, #e8748a 0%, #3a7cc2 100%);
-      opacity: 0.12;
+      opacity: 0.08;
       z-index: -1;
       pointer-events: none;
       will-change: transform;
-      filter: blur(30px);
+      filter: blur(80px);
+    }
+
+    .blob:nth-child(1) {
+      background: radial-gradient(circle, #e8748a, #f4a26100);
+    }
+
+    .blob:nth-child(2) {
+      background: radial-gradient(circle, #f2c57c, #e8748a00);
+    }
+
+    .blob:nth-child(3) {
+      background: radial-gradient(circle, #d4a0c0, #f2c57c00);
+    }
+
+    /* Subtle grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
     }
 
     /* Navigation */
@@ -895,7 +919,7 @@
     (function() {
       const blobs = [];
       const count = 3;
-      const sizes = [420, 340, 280];
+      const sizes = [550, 450, 380];
       const vw = () => window.innerWidth;
       const vh = () => window.innerHeight;
 
@@ -912,8 +936,8 @@
           r: size / 2,
           x: Math.random() * (vw() - size),
           y: Math.random() * (vh() - size),
-          vx: (Math.random() - 0.5) * 0.6,
-          vy: (Math.random() - 0.5) * 0.6,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
           squash: 1,
           squashAngle: 0
         });
