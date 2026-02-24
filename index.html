@@ -640,52 +640,95 @@
       }
     }
 
-    /* Contact Section */
-    .contact {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 80px 48px;
+    /* Contact Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      padding: 48px;
+      max-width: 440px;
+      width: 90%;
       text-align: center;
+      position: relative;
+      animation: modalIn 0.3s ease;
     }
 
-    .contact h2 {
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover { color: #333; }
+
+    .modal h2 {
       font-family: 'arima', serif;
-      font-size: 36px;
+      font-size: 28px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      color: #2a2a2a;
     }
 
-    .contact .contact-subtitle {
+    .modal-subtitle {
       font-family: 'arima', serif;
       font-size: 15px;
-      color: #666;
-      line-height: 1.7;
-      margin-bottom: 36px;
+      color: #888;
+      margin-bottom: 28px;
     }
 
-    .contact-links {
+    .modal-links {
       font-family: 'arima', serif;
       font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .contact-link {
+    .modal-links a {
       color: #e8748a;
       text-decoration: none;
       transition: opacity 0.3s ease;
     }
 
-    .contact-link:hover {
-      opacity: 0.7;
+    .modal-links a:hover { opacity: 0.7; }
+
+    .modal-divider {
+      color: #ccc;
+      font-size: 14px;
     }
 
-    .contact-divider {
-      color: #bbb;
-      font-size: 15px;
+    .modal-note {
+      font-family: 'arima', serif;
+      font-size: 13px;
+      color: #aaa;
     }
   </style>
 </head>
@@ -696,8 +739,8 @@
     <div class="logo">JML</div>
     <div class="nav-links">
       <a href="#">More About Me</a>
-      <a href="#places">Places I've Been</a>
-      <a href="#contact">Contact</a>
+      <a href="places.html">Places I've Been</a>
+      <a href="#" id="contactNav">Contact</a>
     </div>
     <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('open');">
       <span></span>
@@ -724,7 +767,7 @@
       <p>I am in love with traveling. I've been to places that took my breath away and I want to help you have those same moments.</p>
       <p>I'm a travel advisor with Valerie Wilson Travel. Tell me where you want to go and we'll make it happen. I handle everything or as much as you want me to handle.</p>
       <p>I've booked trips all over the world.</p>
-      <a href="#contact" class="reach-out">Reach Out &rarr;
+      <a href="#" class="reach-out" id="reachOutBtn">Reach Out &rarr;
         <svg class="reach-out-circle" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
           <path d="M 30 8 Q 5 12, 8 30 Q 10 52, 60 54 Q 120 58, 170 48 Q 198 40, 195 25 Q 192 8, 150 5 Q 100 -2, 50 6 Q 20 10, 12 28 Q 8 42, 40 50 Q 90 58, 155 50" />
         </svg>
@@ -764,148 +807,29 @@
     </div>
   </section>
 
-  <!-- Places I've Been -->
-  <section class="places" id="places">
-    <h2>Places I've Been</h2>
-    <p class="subtitle">Some of my favorite destinations around the world. Every trip taught me something new.</p>
-
-    <div class="countries-grid" id="countriesGrid">
-      <button class="country-btn" data-country="italy">Italy</button>
-      <button class="country-btn" data-country="ireland">Ireland</button>
-      <button class="country-btn" data-country="japan">Japan</button>
-      <button class="country-btn" data-country="mexico">Mexico</button>
-      <button class="country-btn" data-country="argentina">Argentina</button>
-      <button class="country-btn" data-country="france">France</button>
-      <button class="country-btn" data-country="england">England</button>
-      <button class="country-btn" data-country="spain">Spain</button>
-      <button class="country-btn" data-country="greece">Greece</button>
-      <button class="country-btn" data-country="germany">Germany</button>
-      <button class="country-btn" data-country="morocco">Morocco</button>
-      <button class="country-btn" data-country="tanzania">Tanzania</button>
-      <button class="country-btn" data-country="bahamas">The Bahamas</button>
-      <button class="country-btn" data-country="indonesia">Indonesia</button>
-      <button class="country-btn" data-country="maldives">Maldives</button>
-      <button class="country-btn" data-country="israel">Israel</button>
-      <button class="country-btn" data-country="croatia">Croatia</button>
-      <button class="country-btn" data-country="portugal">Portugal</button>
-      <button class="country-btn" data-country="south-africa">South Africa</button>
-      <button class="country-btn" data-country="caribbean">Caribbean</button>
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h2>Text or email me!</h2>
+      <p class="modal-subtitle">I'd love to help you plan your next trip.</p>
+      <p class="modal-links">
+        <a href="sms:+15551234567">📱 (555) 123-4567</a>
+        <span class="modal-divider">or</span>
+        <a href="mailto:hilary@example.com">✉️ hilary@example.com</a>
+      </p>
+      <p class="modal-note">I'll get back to you!</p>
     </div>
-
-    <div class="country-dropdown" id="countryDropdown">
-      <div class="country-cities" id="countryCities"></div>
-    </div>
-
-  </section>
-
-  <!-- Contact -->
-  <section class="contact" id="contact">
-    <h2>Text or email me!</h2>
-    <p class="contact-subtitle">I'd love to help you plan your next trip.</p>
-    <p class="contact-links">
-      <a href="sms:+15551234567" class="contact-link">📱 (555) 123-4567</a>
-      <span class="contact-divider">or</span>
-      <a href="mailto:hilary@example.com" class="contact-link">✉️ hilary@example.com</a>
-    </p>
-  </section>
+  </div>
 
   <script>
-    // Country accordion
-    const cityData = {
-      italy: [
-        { city: 'Rome', img: 'images/rome.jpg' },
-        { city: 'Amalfi Coast', img: 'images/amalfi.jpg' },
-        { city: 'Venice', img: 'images/venice.jpg' },
-        { city: 'Milan', img: 'images/milan.jpg' },
-        { city: 'Florence', img: 'images/florence.jpg' },
-      ],
-      ireland: [
-        { city: 'Dublin', img: 'images/dublin.jpg' },
-        { city: 'Cliffs of Moher', img: 'images/cliffs-of-moher.jpg' },
-      ],
-      japan: [
-        { city: 'Kyoto', img: 'images/kyoto.jpg' },
-        { city: 'Tokyo', img: 'images/tokyo.jpg' },
-      ],
-      mexico: [
-        { city: 'Tulum', img: 'images/tulum.jpg' },
-        { city: 'Cancún', img: 'images/cancun.jpg' },
-      ],
-      argentina: [
-        { city: 'Buenos Aires', img: 'images/buenos-aires.jpg' },
-        { city: 'Patagonia', img: 'images/patagonia.jpg' },
-      ],
-      france: [{ city: 'Paris', img: 'images/paris.jpg' }],
-      england: [{ city: 'London', img: 'images/london.jpg' }],
-      spain: [{ city: 'Barcelona', img: 'images/barcelona.jpg' }],
-      greece: [{ city: 'Santorini', img: 'images/santorini.jpg' }],
-      germany: [{ city: 'Munich', img: 'images/munich.jpg' }],
-      morocco: [{ city: 'Marrakech', img: 'images/marrakech.jpg' }],
-      tanzania: [{ city: 'Serengeti', img: 'images/serengeti.jpg' }],
-      bahamas: [{ city: 'Nassau', img: 'images/bahamas.jpg' }],
-      indonesia: [{ city: 'Bali', img: 'images/bali.jpg' }],
-      maldives: [{ city: 'Malé', img: 'images/maldives.jpg' }],
-      israel: [{ city: 'Jerusalem', img: 'images/jerusalem.jpg' }],
-      croatia: [{ city: 'Dubrovnik', img: 'images/dubrovnik.jpg' }],
-      portugal: [{ city: 'Lisbon', img: 'images/lisbon.jpg' }],
-      'south-africa': [{ city: 'Cape Town', img: 'images/cape-town.jpg' }],
-      caribbean: [{ city: 'St. Lucia', img: 'images/st-lucia.jpg' }],
-    };
-
-    const grid = document.getElementById('countriesGrid');
-    const dropdown = document.getElementById('countryDropdown');
-    const citiesContainer = document.getElementById('countryCities');
-    let activeCountry = null;
-
-    grid.addEventListener('click', (e) => {
-      const btn = e.target.closest('.country-btn');
-      if (!btn) return;
-      const country = btn.dataset.country;
-
-      // Close if same country clicked
-      if (activeCountry === country) {
-        btn.classList.remove('active');
-        dropdown.classList.remove('open');
-        activeCountry = null;
-        // Move dropdown out
-        return;
-      }
-
-      // Remove previous active
-      grid.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Build city cards
-      const cities = cityData[country] || [];
-      citiesContainer.innerHTML = cities.map(c => `
-        <div class="place-card">
-          <img src="${c.img}" alt="${c.city}" loading="lazy">
-          <div class="place-overlay">
-            <div class="place-city">${c.city}</div>
-          </div>
-        </div>
-      `).join('');
-
-      // Position dropdown after the row containing the clicked button
-      const btnRect = btn.getBoundingClientRect();
-      const gridRect = grid.getBoundingClientRect();
-      const buttons = [...grid.querySelectorAll('.country-btn')];
-      const btnIndex = buttons.indexOf(btn);
-
-      // Find last button in the same row
-      const btnTop = btn.offsetTop;
-      let insertAfter = btn;
-      for (let i = btnIndex + 1; i < buttons.length; i++) {
-        if (buttons[i].offsetTop === btnTop) {
-          insertAfter = buttons[i];
-        } else break;
-      }
-
-      // Insert dropdown after that row
-      insertAfter.after(dropdown);
-      dropdown.classList.add('open');
-      activeCountry = country;
-    });
+    // Contact modal
+    const modal = document.getElementById('contactModal');
+    const openModal = (e) => { e.preventDefault(); modal.classList.add('open'); };
+    document.getElementById('contactNav').addEventListener('click', openModal);
+    document.getElementById('reachOutBtn').addEventListener('click', openModal);
+    document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
 
     // Mobile nav
     document.querySelectorAll('.nav-links a').forEach(a => {
